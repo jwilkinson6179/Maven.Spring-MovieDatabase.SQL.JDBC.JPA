@@ -1,0 +1,22 @@
+INSERT INTO movies (title, runtime, genre, imdb_score, rating) VALUES ('Howard the Duck', 110, 'Sci-Fi', 4.6, 'PG');
+INSERT INTO movies (title, runtime, genre, imdb_score, rating) VALUES ('Lavalantula', 83, 'Horror', 4.7, 'TV-14');
+INSERT INTO movies (title, runtime, genre, imdb_score, rating) VALUES ('Starship Troopers', 129, 'Sci-Fi', 7.2, 'PG-13');
+INSERT INTO movies (title, runtime, genre, imdb_score, rating) VALUES ('Waltz With Bashir', 90, 'Documentary', 8.0, 'R');
+INSERT INTO movies (title, runtime, genre, imdb_score, rating) VALUES ('Spaceballs', 96, 'Comedy', 7.1, 'PG');
+INSERT INTO movies (title, runtime, genre, imdb_score, rating) VALUES ('Monsters Inc.', 92, 'Animation', 8.1, 'G');
+INSERT INTO movies (title, runtime, genre, imdb_score, rating) VALUES ('Cabin Fever', 94, 'Horror', 5.7, 'R');
+INSERT INTO movies (title, runtime, genre, imdb_score, rating) VALUES ('Contagion', 106, 'Drama', 6.7, 'PG-13');
+INSERT INTO movies (title, runtime, genre, imdb_score, rating) VALUES ('Dawn of the Dead', 110, 'Horror', 7.3, 'R');
+INSERT INTO movies (title, runtime, genre, imdb_score, rating) VALUES ('Fight Club', 139, 'Drama', 8.8, 'R');
+INSERT INTO movies (title, runtime, genre, imdb_score, rating) VALUES ('Frozen', 102, 'Animation', 7.5, 'G');
+INSERT INTO movies (title, runtime, genre, imdb_score, rating) VALUES ('Iron Man', 126, 'Action', 7.9, 'PG-13');
+
+SELECT * FROM movies WHERE genre = 'Sci-Fi';
+SELECT * FROM movies WHERE imdb_score >= 6.5;
+SELECT * FROM movies WHERE (rating = 'G' OR rating = 'PG') AND runtime < 100;
+SELECT genre, AVG(runtime) FROM movies WHERE imdb_score < 7.5 GROUP BY genre;
+UPDATE movies SET rating = 'R' WHERE title = 'Starship Troopers';
+SELECT m.id, m.rating FROM movies m WHERE genre = 'Horror' OR genre = 'Documentary';
+SELECT m.rating, m.AVG(imdb_score), m.MIN(imdb_score), m.MAX(imdb_score) FROM movies m GROUP BY rating;
+SELECT m.rating, m.AVG(imdb_score), m.MIN(imdb_score), m.MAX(imdb_score) FROM movies m GROUP BY rating HAVING COUNT(*) > 1;
+DELETE FROM movies WHERE rating = 'R';
